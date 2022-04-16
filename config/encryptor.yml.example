@@ -1,0 +1,16 @@
+# Generated from your Rails Console
+# salt = SecureRandom.random_bytes(ActiveSupport::MessageEncryptor.key_len)
+# key = ActiveSupport::MessageEncryptor.key_len('password').generate_key(salt, ActiveSupport::MessageEncryptor.key_len)
+
+defaults: &defaults
+  SALT: salt
+  KEY: key
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+test:
+  <<: *defaults
