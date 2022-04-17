@@ -51,7 +51,7 @@ RSpec.describe User, type: :model do
 
     let(:password) { subject.password }
     it 'should not re-encrypt password when updated' do
-      subject.update(is_admin: true)
+      subject.update(first_name: 'test')
       subject.save
       expect(subject.password).to eq password
     end
