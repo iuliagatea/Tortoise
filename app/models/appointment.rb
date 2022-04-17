@@ -4,7 +4,6 @@ class Appointment < ActiveRecord::Base
   belongs_to :partner
 
   validates_presence_of :service, :customer, :partner, :from, :to
-  validates_associated :customer, :partner
 
   validate :to_date_after_from_date?
   validate :same_partner_id?
