@@ -5,7 +5,6 @@ module Validations
   VALID_PASSWORD_REGEX = /\A(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&+=]).{6,}\z/
 
   included do
-    validates_presence_of :password
     validates_length_of :password, minimum: 6
     validates_format_of :password, with: VALID_PASSWORD_REGEX
     validates :email, presence: true, length: { maximum: 105 },

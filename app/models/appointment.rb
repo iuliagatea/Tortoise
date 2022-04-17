@@ -3,13 +3,8 @@ class Appointment < ActiveRecord::Base
   belongs_to :customer
   belongs_to :partner
 
-  validates_presence_of :service
-  validates_associated :customer
-  validates_presence_of :customer
-  validates_associated :partner
-  validates_presence_of :partner
-  validates_presence_of :from
-  validates_presence_of :to
+  validates_presence_of :service, :customer, :partner, :from, :to
+  validates_associated :customer, :partner
 
   validate :to_date_after_from_date?
   validate :same_partner_id?
