@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   include Validations
-  include Encryption
+  has_secure_password
   validates_presence_of :first_name, :last_name
   validates_length_of :first_name, :last_name, minimum: 3, maximum: 25
   before_save :downcase_email
