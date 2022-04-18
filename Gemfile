@@ -41,6 +41,7 @@ group :development, :test do
   gem 'rubocop-rspec', require: false
   gem 'faker', '~> 1.6', '>= 1.6.3'
   gem 'shoulda-matchers'
+  gem 'factory_bot_rails'
 end
 
 group :development do

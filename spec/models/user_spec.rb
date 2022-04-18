@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject { create :user, email: 'USER@test.com' }
+  subject { create :user, email: 'USER@test.com', password: 'P@ssw0rd' }
 
   describe 'validations' do
     context 'first_name' do
@@ -24,7 +24,6 @@ RSpec.describe User, type: :model do
       end
     end
     context 'password' do
-      it { should validate_presence_of(:password) }
       it { should validate_length_of(:password).is_at_least(6) }
       it 'should have valid format' do
         invalid_passwords = %w[Testtt test test1 test! test1! Test1 Test!]

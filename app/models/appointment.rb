@@ -5,8 +5,8 @@ class Appointment < ActiveRecord::Base
 
   validates_presence_of :service, :customer, :partner, :from, :to
 
-  validate :to_date_after_from_date?
-  validate :same_partner_id?
+  before_save :to_date_after_from_date?
+  before_save :same_partner_id?
 
   def to_date_after_from_date?
     if to < from
