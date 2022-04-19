@@ -8,6 +8,13 @@ class Appointment < ActiveRecord::Base
   before_save :to_date_after_from_date?
   before_save :same_partner_id?
 
+  # def valid?
+  #   taken = where("start <= ? AND end >= ?", from, to)
+  #   save unless taken
+  # end
+
+  private
+
   def to_date_after_from_date?
     if to < from
       errors.add :to, "date must be after from date"
