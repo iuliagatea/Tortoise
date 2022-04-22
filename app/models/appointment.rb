@@ -1,29 +1,16 @@
+# frozen_string_literal: true
+
 class Appointment < ActiveRecord::Base
   belongs_to :service
   belongs_to :customer
-  belongs_to :partner
 
-  validates_presence_of :service, :customer, :partner, :from, :to
+  validates_presence_of :service, :customer, :date, :from_time, :to_time
 
-  before_save :to_date_after_from_date?
-  before_save :same_partner_id?
-
-  # def valid?
-  #   taken = where("start <= ? AND end >= ?", from, to)
-  #   save unless taken
-  # end
+  before_save :to_time_after_from_time?
 
   private
 
-  def to_date_after_from_date?
-    if to < from
-      errors.add :to, "date must be after from date"
-    end
-  end
-
-  def same_partner_id?
-    if partner_id != service.user_id
-      errors.add :service, "must belong to selected partner"
-    end
+  def to_time_after_from_time?
+    errors.add :to_time, 'must be after from time' if to_time < from_time
   end
 end

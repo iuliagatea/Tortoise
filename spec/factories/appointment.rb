@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :appointment do
-    from { DateTime.now }
-    to { DateTime.now + 50.minutes }
+    from_time { DateTime.now }
+    to_time { DateTime.now + 50.minutes }
   end
 end
