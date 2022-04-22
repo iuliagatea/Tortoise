@@ -11,36 +11,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220419164403) do
+ActiveRecord::Schema.define(version: 20220419170317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
-    t.datetime "from"
-    t.datetime "to"
+    t.datetime "date"
+    t.time     "from_time"
+    t.time     "to_time"
+    t.boolean  "is_honoured", default: false
     t.integer  "service_id"
     t.integer  "customer_id"
-    t.integer  "partner_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "appointments", ["customer_id"], name: "index_appointments_on_customer_id", using: :btree
-  add_index "appointments", ["partner_id"], name: "index_appointments_on_partner_id", using: :btree
   add_index "appointments", ["service_id"], name: "index_appointments_on_service_id", using: :btree
+
+  create_table "availabilities", force: :cascade do |t|
+    t.integer  "partner_id"
+    t.string   "wday"
+    t.datetime "date"
+    t.time     "from_time"
+    t.time     "to_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "availabilities", ["partner_id"], name: "index_availabilities_on_partner_id", using: :btree
 
   create_table "services", force: :cascade do |t|
     t.string   "name"
     t.float    "price"
     t.string   "duration"
-    t.integer  "user_id"
+    t.integer  "partner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "services", ["partner_id"], name: "index_services_on_partner_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email"
+    t.string   "password_digest"
+    t.string   "recovery_password_digest"
     t.string   "phone_number"
     t.string   "first_name"
     t.string   "last_name"
@@ -50,9 +66,10 @@ ActiveRecord::Schema.define(version: 20220419164403) do
     t.string   "type"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.string   "password_digest"
-    t.string   "recovery_password_digest"
   end
 
   add_foreign_key "appointments", "services"
+  add_foreign_key "appointments", "users", column: "customer_id"
+  add_foreign_key "availabilities", "users", column: "partner_id"
+  add_foreign_key "services", "users", column: "partner_id"
 end
