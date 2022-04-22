@@ -9,7 +9,6 @@ class TimeSlot
 
   def slots
     available_slots = []
-    # byebug
     working_hours.each do |start_of_day, end_of_day|
       slot_start_time = start_of_day
       while slot_start_time != end_of_day && slot_start_time < end_of_day

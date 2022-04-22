@@ -4,10 +4,6 @@ class Partner < User
   has_many :services
   has_many :availabilities
 
-  def customers
-    appointments.map(&:customer).uniq
-  end
-
   def appointments
     services.map(&:appointments).flatten
   end
