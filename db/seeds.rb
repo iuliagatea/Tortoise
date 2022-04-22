@@ -37,20 +37,33 @@ end
 services_list.each do |service_attributes|
   Partner.all.each do |partner|
     new_service = Service.new
-    service_attributes[:user_id] = partner.id
+    service_attributes[:partner_id] = partner.id
     new_service.update_attributes(service_attributes)
   end
 end
 
 appointments_list = []
 (1..30).each do |_index|
-  service_id = Service.ids.sample
-  partner_id = Service.find(service_id).user_id
-  appointments_list << { from: DateTime.now, to: DateTime.now + rand(1..60).minutes, service_id: service_id,
-                         partner_id: partner_id, customer_id: Customer.ids.sample }
+  now = DateTime.now + rand(30).days
+  to_time = now + rand(1..60).minutes
+  appointments_list << { date: now, from_time: now, to_time: to_time, service_id: Service.ids.sample,
+                         customer_id: Customer.ids.sample }
 end
 
 appointments_list.each do |appointment_attributes|
   new_appointment = Appointment.new
   new_appointment.update_attributes(appointment_attributes)
+end
+
+availability_list = []
+(1..6).each do |index|
+  availability_list << { wday: index, from_time: '09:00', to_time: '17:00' }
+end
+
+availability_list.each do |availability_attrs|
+  Partner.all.each do |partner|
+    new_avaialbility = Availability.new
+    availability_attrs[:partner_id] = partner.id
+    new_avaialbility.update_attributes(availability_attrs)
+  end
 end
