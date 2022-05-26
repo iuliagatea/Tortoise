@@ -1,0 +1,17 @@
+<h3>
+  <%= object.full_name %>
+</h3>
+<p><%= truncate(object.description, length: 500) %></p>
+<br />
+
+<% if object.services.any? %>
+  <div class="table-responsive">
+    <table class="table">
+      <tr>
+        <% object.services.each do |service| %>
+          <td> <%= link_to service.name, new_service_appointment_path(service), :class => 'btn btn-default', :title => service.price %> </td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+<% end %>

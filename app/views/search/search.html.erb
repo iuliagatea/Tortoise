@@ -1,0 +1,25 @@
+<% if @partners && @partners.size > 0 %>
+  <div class="col-lg-3">
+    <div class="well sidebar-nav">
+      <h4>Filters</h4>
+      <%= form_tag({:controller => "search", :action => "search"}, {:method => "post", :class => "form-horizontal"}) do %>
+        <%= hidden_field_tag 'query', params[:query] %>
+        <div class="row">
+          <%= submit_tag 'Apply filters', class: "btn btn-default", id:"submit" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-lg-9">
+    <% @partners.each do |partner| %>
+      <%= render 'search/search_result', object: partner %>
+      <h4 class="no-black-hover">
+
+      </h4>
+      <hr>
+    <% end %>
+    <%= link_to t('.back', :default => t("helpers.links.back")),
+                root_path, :class => 'btn btn-default' %>
+  </div>
+
+<% end %>

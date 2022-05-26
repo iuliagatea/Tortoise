@@ -1,0 +1,24 @@
+<tr>
+  <% @slots.each do |slot| %>
+    <td>
+      <button class="btn btn-default" onclick=setValueToFromTime("<%= format_time(slot.first) %>")>
+        <%= "#{format_time(slot.first)} - #{format_time(slot.last)}" %>
+      </button>
+    </td>
+  <% end %>
+</tr>
+<tr>
+  <td colspan="<%= @slots.count %>">
+  <%= form_for([@service, @appointment], :html => { :class => "form-horizontal" }) do |f| %>
+      <%= f.hidden_field :date, :value => @date, :class => 'form-control' %>
+      <div class="row interval_slots_time_field">
+        <div class="col-lg-10">
+          <%= f.time_field :from_time, class: "form-control" %>
+        </div>
+        <div class="col-lg-10">
+          <%= f.submit nil, :class => 'btn btn-default', :data => { :confirm => 'Are you sure you want to save this appointment?' } %>
+        </div>
+      </div>
+<% end %>
+  </td>
+</tr>

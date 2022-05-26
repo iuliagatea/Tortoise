@@ -1,0 +1,23 @@
+<table class="table table-hover">
+  <thead>
+  <td>Service name</td>
+  <td>Duration</td>
+  <td>Price</td>
+  </thead>
+  <tbody>
+  <% @services.each do |service| %>
+    <tr class="event-tr">
+      <td>
+        <%= link_to service.name, edit_service_path(service) %>
+      </td>
+      <td> <%= service.duration %> </td>
+      <td> <%= service.price %> </td>
+      <td><%= link_to ("<i class='fa fa-trash'></i> " + 'Delete').html_safe,
+                      service_path(service),
+                      :method => 'delete',
+                      :data => { :confirm => 'Are you sure you want to delete this service?' },
+                      :class => 'btn btn-danger' %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

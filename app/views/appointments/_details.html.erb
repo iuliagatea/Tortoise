@@ -1,0 +1,8 @@
+<small>
+  <br>
+  <i class='fa fa-calendar-o'></i> <%= format_date(object.date) %>
+  <br>
+  <i class='fa fa-clock-o'></i> <%= format_time(object.from_time) %>
+  <br>
+  <i class='fa fa-angle-right'></i> <%= link_to object.service.name, new_service_appointment_path(object.service) %>
+</small>

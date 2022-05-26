@@ -1,0 +1,13 @@
+<< <%= format_date(@date) %> <%= link_to ">>" %>
+</br>
+<h3><%= @service.name %></h3>
+<h4><%= @service.duration %> min</h4>
+<div class="table-responsive">
+<table class="table">
+  <% if Rails.configuration.params['interval_slots'] %>
+    <%= render 'appointments/interval_slots', object: @slots %>
+  <% else %>
+    <%= render 'appointments/slots', object: @slots %>
+  <% end %>
+</table>
+</div>

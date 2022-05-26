@@ -14,3 +14,4 @@
 logfile
 .idea
 .byebug_history
+node_modules

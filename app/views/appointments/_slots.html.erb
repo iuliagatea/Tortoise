@@ -1,0 +1,9 @@
+<tr>
+  <% @slots.each do |slot| %>
+    <%= form_for([@service, @appointment], :html => { :class => "form-horizontal" }) do |f| %>
+      <%= f.hidden_field :date, :value => @date, :class => 'form-control' %>
+      <%= f.hidden_field :from_time, :value => slot, :class => 'form-control' %>
+      <td><%= f.submit format_time(slot), :class => 'btn btn-default', :data => { :confirm => 'Are you sure you want to save this appointment?' } %></td>
+    <% end %>
+  <% end %>
+</tr>

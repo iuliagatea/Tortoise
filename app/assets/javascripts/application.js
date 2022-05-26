@@ -14,3 +14,14 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery3
+//= require bootstrap-sprockets
+$(document).ready(function() {
+    $(".interval_slots_time_field").hide();
+})
+
+function setValueToFromTime(fromTimeValue){
+    document.getElementById('appointment_from_time').setAttribute('value', fromTimeValue);
+    $(".interval_slots_time_field").show();
+}
+

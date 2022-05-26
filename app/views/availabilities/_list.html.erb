@@ -1,0 +1,13 @@
+<table class="table table-hover">
+  <tbody>
+  <% @availabilities.each do |availability| %>
+    <tr class="event-tr">
+      <td>
+        <%= link_to (availability.wday || availability.date), edit_availability_path(availability) %>
+      </td>
+      <td> <%= availability.from_time %> </td>
+      <td> <%= availability.to_time %> </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

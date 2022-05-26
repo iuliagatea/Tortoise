@@ -1,0 +1,12 @@
+<table class="table table-hover">
+  <tbody>
+  <% @appointments.each do |appointment| %>
+    <tr class="event-tr">
+      <td>
+        <%= link_to appointment.service.partner.full_name, appointment_path(appointment) %>
+        <%= render 'appointments/details', object: appointment %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

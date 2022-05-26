@@ -1,5 +1,22 @@
 Rails.application.routes.draw do
-  resources :customers
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
+  resources :registrations, only: %i[new create], path: 'sign_up', path_names: { new: '' }
+
+  resources :customers, :controller => "users", :type => "Customer"
+  resources :partners, :controller => "users", :type => "Partner"
+  resources :appointments, except: %i[new]
+  resources :availabilities
+  resources :services
+  resources :services, only: [] do
+    resources :appointments, only: %i[new create]
+  end
+  resource :partners, only: [] do
+    get :appointments
+  end
+  root 'home#index'
+  post '/search' => 'search#search'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

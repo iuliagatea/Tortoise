@@ -1,0 +1,31 @@
+<%= form_for(@appointment, :html => { :class => "form-horizontal" }) do |f| %>
+
+  <%= render 'shared/error_messages', object: @appointment %>
+
+  <div class="form-group">
+    <%= f.label :date, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.date_select :date, :class => 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :from_time, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.time_field :from_time, :class => 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :to_time, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.time_field :to_time, :class => 'form-control' %>
+    </div>
+  </div>
+  <%= f.hidden_field :service_id, :class => 'form-control' %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  root_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+<% end %>

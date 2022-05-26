@@ -1,0 +1,10 @@
+<h1><%= @appointment.service.name %></h1>
+<p>
+  <%= render 'appointments/details', object: @appointment %>
+</p>
+
+<small> Appointment created by: <%= @appointment.customer.full_name %></small>
+
+<div>
+  <%= render 'appointments/actions', object: @appointment %>
+</div>

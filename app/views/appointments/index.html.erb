@@ -1,0 +1,17 @@
+<% provide(:title, 'Appointments') %>
+<% if current_user.is_partner %>
+  <%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @appointments) do |date, appointments| %>
+    <%= date.day %>
+
+    <% appointments.each do |appointment| %>
+      <div class="small">
+        <%= link_to "#{format_time(appointment.from_time)}: #{appointment.service.name}", appointment_path(appointment) %>
+      </div>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= render 'appointments/list' %>
+<% end %>
+
+
+

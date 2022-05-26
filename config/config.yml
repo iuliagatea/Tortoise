@@ -1,0 +1,11 @@
+default: &default
+  interval_slots: true
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

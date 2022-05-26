@@ -8,6 +8,10 @@ class Partner < User
     services.map(&:appointments).flatten
   end
 
+  def full_name
+    company
+  end
+
   def date_appointments(date)
     appointments.select { |appointment| appointment.date.strftime('%d.%m.%Y') == date.strftime('%d.%m.%Y') }
   end
